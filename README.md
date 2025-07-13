@@ -6,11 +6,27 @@ This repository contains sample code demonstrating various React and TypeScript 
 
 ### Single App Instance
 Located in the `single-app-instance` directory, this sample demonstrates:
-- Setting up a React application with TypeScript
-- Using Vite as the build tool
-- Basic React component structure
-- TypeScript type definitions
+- Singleton pattern implementation using BroadcastChannel API
+- Cross-tab communication in React applications
+- Ensuring only one primary instance runs across multiple browser tabs
+- TypeScript integration with React and Vite
 - Modern React development practices
+
+### React SPA Inter-Communication
+Located in the `react-spa-inter-communication` directory, this sample demonstrates:
+- Communication between two separate React SPAs
+- Real-time context synchronization via WebSocket connections
+- Custom event system for cross-SPA communication
+- Node.js server as a central hub for shared application state
+- Event-driven architecture with TypeScript support
+
+### Microfrontends with Custom Events and Shared Context
+Located in the `microfrontends-custom-events-shared-context` directory, this sample demonstrates:
+- Production-grade microfrontend architecture
+- Independent React SPAs orchestrated by a container application
+- Inter-microfrontend communication via browser custom events
+- Monorepo structure with npm workspaces
+- Express server serving microfrontend bundles and shared context
 
 ## Getting Started
 
@@ -35,7 +51,11 @@ Each sample is a self-contained React application. To run any sample:
 
 - React 18+
 - TypeScript
-- Vite
+- Vite (build tool)
+- Node.js (server applications)
+- Express.js (web framework)
+- WebSocket (real-time communication)
+- BroadcastChannel API (cross-tab communication)
 - ESLint
 - Modern CSS
 
