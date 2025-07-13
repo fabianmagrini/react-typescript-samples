@@ -5,7 +5,7 @@ A practical demonstration of how to establish communication between two separate
 ## Architecture Overview
 
 ```
-┌─────────────────┐    WebSocket    ┌─────────────────┐    WebSocket    ┌─────────────────┐
+┌─────────────────┐    WebSocket   ┌─────────────────┐    WebSocket   ┌─────────────────┐
 │   Admin SPA     │◄──────────────►│   Node.js       │◄──────────────►│   User Portal   │
 │   (Port 3001)   │                │   Server        │                │   (Port 3002)   │
 │                 │                │   (Port 3000)   │                │                 │

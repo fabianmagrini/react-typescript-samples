@@ -5,7 +5,7 @@ A production-grade microfrontend application demonstrating how to build and orch
 ## Architecture Overview
 
 ```
-┌─────────────────┐    HTTP/Static    ┌─────────────────┐    Custom Events    ┌─────────────────┐
+┌─────────────────┐    HTTP/Static    ┌─────────────────┐    Custom Events   ┌─────────────────┐
 │   Container     │◄─────────────────►│   Product       │◄──────────────────►│   Cart          │
 │   (Express)     │                   │   Microfrontend │                    │   Microfrontend │
 │   Port 4000     │                   │   (React SPA)   │                    │   (React SPA)   │
