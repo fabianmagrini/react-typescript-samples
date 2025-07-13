@@ -1,0 +1,15 @@
+{
+  "name": "production-microfrontend-app",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=container-app\" \"npm run dev --workspace=microfrontend-product\" \"npm run dev --workspace=microfrontend-cart\"",
+    "build": "npm run build --workspace=shared-types && npm run build --workspace=microfrontend-product && npm run build --workspace=microfrontend-cart && npm run build --workspace=container-app",
+    "start": "npm run start --workspace=container-app"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
