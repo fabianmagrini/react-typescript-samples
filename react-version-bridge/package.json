@@ -1,0 +1,21 @@
+{
+  "name": "react-version-bridge-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd host && npm install && cd ../remote-legacy && npm install && cd ../remote-latest && npm install",
+    "test": "npm run test:host && npm run test:remote-legacy && npm run test:remote-latest",
+    "test:host": "cd host && npm test",
+    "test:remote-legacy": "cd remote-legacy && npm test", 
+    "test:remote-latest": "cd remote-latest && npm test",
+    "test:watch": "npm run test:host -- --watch",
+    "test:coverage": "npm run test:host -- --coverage && npm run test:remote-legacy -- --coverage && npm run test:remote-latest -- --coverage",
+    "start:all": "concurrently \"cd host && npm start\" \"cd remote-legacy && npm start\" \"cd remote-latest && npm start\"",
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "concurrently": "^8.2.2"
+  }
+}

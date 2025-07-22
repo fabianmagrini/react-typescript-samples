@@ -28,6 +28,14 @@ Located in the `microfrontends-custom-events-shared-context` directory, this sam
 - Monorepo structure with npm workspaces
 - Express server serving microfrontend bundles and shared context
 
+### React Version Bridge Microfrontend
+Located in the `react-version-bridge` directory, this sample demonstrates:
+- React version isolation with React 18 and React 19 coexistence
+- Two dependency sharing patterns: Singleton and Web Components Bridge
+- Module Federation implementation for microfrontend architecture
+- Production-ready implementation with comprehensive test coverage (49/49 tests passing)
+- Web Components bridge for complete React version isolation at the DOM boundary
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
@@ -56,6 +64,8 @@ Each sample is a self-contained React application. To run any sample:
 - Express.js (web framework)
 - WebSocket (real-time communication)
 - BroadcastChannel API (cross-tab communication)
+- Module Federation (microfrontend architecture)
+- Web Components API (version isolation)
 - ESLint
 - Modern CSS
 
