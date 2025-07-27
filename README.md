@@ -36,6 +36,15 @@ Located in the `react-version-bridge` directory, this sample demonstrates:
 - Production-ready implementation with comprehensive test coverage (49/49 tests passing)
 - Web Components bridge for complete React version isolation at the DOM boundary
 
+### Next.js Server-Side Rendering
+Located in the `nextjs-ssr` directory, this sample demonstrates:
+- Next.js 15 with App Router and server-side rendering
+- TypeScript integration with strict type checking
+- Tailwind CSS for utility-first styling and responsive design
+- Reusable UI component system (Button, Card, Navigation)
+- API routes with full CRUD operations for products, posts, and contact forms
+- Optimizations with security headers and performance tuning
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
@@ -60,6 +69,7 @@ Each sample is a self-contained React application. To run any sample:
 - React 18+
 - TypeScript
 - Vite (build tool)
+- Tailwind CSS (utility-first CSS framework)
 - Node.js (server applications)
 - Express.js (web framework)
 - WebSocket (real-time communication)
