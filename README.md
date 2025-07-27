@@ -45,6 +45,15 @@ Located in the `nextjs-ssr` directory, this sample demonstrates:
 - API routes with full CRUD operations for products, posts, and contact forms
 - Optimizations with security headers and performance tuning
 
+### Route-Centric Layouts
+Located in the `route-centric-layouts` directory, this sample demonstrates:
+- Route-centric layout patterns with TanStack Router
+- Type-safe routing with file-based routing system
+- Different layouts for different route groups (MainLayout, DashboardLayout)
+- Comprehensive testing with Vitest and Testing Library
+- Component documentation and development with Storybook
+- Code splitting and production-ready build optimization
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
@@ -70,12 +79,15 @@ Each sample is a self-contained React application. To run any sample:
 - TypeScript
 - Vite (build tool)
 - Tailwind CSS (utility-first CSS framework)
+- TanStack Router (type-safe routing)
 - Node.js (server applications)
 - Express.js (web framework)
 - WebSocket (real-time communication)
 - BroadcastChannel API (cross-tab communication)
 - Module Federation (microfrontend architecture)
 - Web Components API (version isolation)
+- Storybook (component documentation)
+- Vitest (testing framework)
 - ESLint
 - Modern CSS
 
