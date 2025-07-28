@@ -54,6 +54,15 @@ Located in the `route-centric-layouts` directory, this sample demonstrates:
 - Component documentation and development with Storybook
 - Code splitting and production-ready build optimization
 
+### Headless React Components
+Located in the `headless-tailwind` directory, this sample demonstrates:
+- Headless architecture with logic separated from styling
+- TypeScript-first component development with comprehensive interfaces
+- Accessibility features with WCAG guidelines and keyboard navigation
+- Tailwind CSS utility-first styling approach
+- Responsive design with mobile-first breakpoints
+- Reusable component system (Button, Modal, Dropdown) with multiple variants
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
