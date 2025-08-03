@@ -63,6 +63,16 @@ Located in the `headless-tailwind` directory, this sample demonstrates:
 - Responsive design with mobile-first breakpoints
 - Reusable component system (Button, Modal, Dropdown) with multiple variants
 
+### Host-Managed Data Pattern
+Located in the `host-managed-data` directory, this sample demonstrates:
+- Host-Managed Data Pattern with clean separation between data management and UI rendering
+- TanStack Query v5 for server state management with intelligent caching
+- Zustand for lightweight client state management
+- React 19 with TypeScript and comprehensive dark mode support
+- Complete test coverage (26 tests) with Vitest and React Testing Library
+- Interactive Storybook component development and documentation
+- Real-time data synchronization and loading states with error handling
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
@@ -84,11 +94,13 @@ Each sample is a self-contained React application. To run any sample:
 
 ## Technology Stack
 
-- React 18+
+- React 18+ & React 19
 - TypeScript
 - Vite (build tool)
 - Tailwind CSS (utility-first CSS framework)
 - TanStack Router (type-safe routing)
+- TanStack Query v5 (server state management)
+- Zustand (client state management)
 - Node.js (server applications)
 - Express.js (web framework)
 - WebSocket (real-time communication)
@@ -97,6 +109,7 @@ Each sample is a self-contained React application. To run any sample:
 - Web Components API (version isolation)
 - Storybook (component documentation)
 - Vitest (testing framework)
+- React Testing Library
 - ESLint
 - Modern CSS
 
