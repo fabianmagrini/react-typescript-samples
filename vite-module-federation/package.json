@@ -1,0 +1,20 @@
+{
+  "name": "vite-module-federation",
+  "private": true,
+  "workspaces": [
+    "host",
+    "remote"
+  ],
+  "scripts": {
+    "dev": "npm run build:remote && concurrently \"npm run preview:remote\" \"npm run dev:host\"",
+    "dev:host": "cd host && npm run dev",
+    "dev:remote": "cd remote && npm run dev",
+    "preview:remote": "cd remote && npm run preview",
+    "build": "npm run build:remote && npm run build:host",
+    "build:host": "cd host && npm run build",
+    "build:remote": "cd remote && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

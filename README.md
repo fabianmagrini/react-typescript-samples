@@ -73,6 +73,15 @@ Located in the `host-managed-data` directory, this sample demonstrates:
 - Interactive Storybook component development and documentation
 - Real-time data synchronization and loading states with error handling
 
+### Vite Module Federation
+Located in the `vite-module-federation` directory, this sample demonstrates:
+- Complete micro-frontend architecture using Vite Module Federation with TypeScript
+- Monorepo workspace with host and remote applications
+- TypeScript integration with type-safe remote component imports
+- Component federation with shared dependencies and runtime deduplication
+- Development and production build configurations optimized for federation
+- Independent development and deployment of micro-frontend applications
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
@@ -106,7 +115,9 @@ Each sample is a self-contained React application. To run any sample:
 - WebSocket (real-time communication)
 - BroadcastChannel API (cross-tab communication)
 - Module Federation (microfrontend architecture)
+- Vite Module Federation (@originjs/vite-plugin-federation)
 - Web Components API (version isolation)
+- npm workspaces (monorepo management)
 - Storybook (component documentation)
 - Vitest (testing framework)
 - React Testing Library
