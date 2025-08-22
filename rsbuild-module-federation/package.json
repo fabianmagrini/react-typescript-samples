@@ -1,0 +1,40 @@
+{
+  "name": "rsbuild-module-federation",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "./scripts/dev.sh",
+    "dev:host": "npm run dev --workspace=@mf/host",
+    "dev:remote": "npm run dev --workspace=@mf/remote",
+    "dev:bff": "npm run dev --workspace=@mf/bff",
+    "build": "./scripts/build.sh",
+    "build:prod": "BUILD_ENV=production ./scripts/build.sh",
+    "build:dev": "BUILD_ENV=development ./scripts/build.sh",
+    "test": "npm run test --workspaces",
+    "test:unit": "npm run test --workspace=@mf/host",
+    "test:e2e": "npm run e2e --workspace=@mf/host",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "type-check": "npm run type-check --workspaces",
+    "clean": "rm -rf apps/*/dist packages/*/dist node_modules/.cache",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
+}

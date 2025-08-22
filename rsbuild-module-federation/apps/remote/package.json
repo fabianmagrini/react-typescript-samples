@@ -1,0 +1,31 @@
+{
+  "name": "@mf/remote",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "@mf/shared-types": "file:../../packages/shared-types",
+    "@mf/ui-components": "file:../../packages/ui-components",
+    "@mf/utils": "file:../../packages/utils"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^0.7.0",
+    "@rsbuild/plugin-react": "^0.7.0",
+    "@rsbuild/plugin-type-check": "^0.7.0",
+    "@module-federation/enhanced": "^0.2.3",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.22",
+    "typescript": "^5.4.5",
+    "tailwindcss": "^3.4.3",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38"
+  }
+}

@@ -82,6 +82,15 @@ Located in the `vite-module-federation` directory, this sample demonstrates:
 - Development and production build configurations optimized for federation
 - Independent development and deployment of micro-frontend applications
 
+### RSBuild Module Federation
+Located in the `rsbuild-module-federation` directory, this sample demonstrates:
+- Modern micro-frontend architecture using RSBuild Module Federation with TypeScript
+- High-performance build system based on Rust with optimized bundling
+- Federation setup with host and remote applications
+- TypeScript integration with federated modules and shared dependencies
+- Fast development and production builds with RSBuild's performance optimizations
+- Independent deployment and runtime loading of micro-frontend components
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:

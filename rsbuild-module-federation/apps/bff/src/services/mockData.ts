@@ -1,0 +1,148 @@
+import { User, DashboardStats, Product, Order } from '@/types';
+
+export const mockUsers: User[] = [
+  {
+    id: '1',
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-03-15T14:30:00Z',
+  },
+  {
+    id: '2',
+    name: 'Jane Smith',
+    email: 'jane.smith@example.com',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616c9495085?w=32&h=32&fit=crop&crop=face',
+    createdAt: '2024-02-01T09:15:00Z',
+    updatedAt: '2024-03-10T11:20:00Z',
+  },
+];
+
+export const mockDashboardStats: DashboardStats = {
+  totalUsers: 1247,
+  totalOrders: 3892,
+  revenue: 125430.50,
+  growth: 12.5,
+  lastUpdated: new Date().toISOString(),
+};
+
+export const mockProducts: Product[] = [
+  {
+    id: '1',
+    name: 'Wireless Headphones',
+    description: 'High-quality wireless headphones with noise cancellation',
+    price: 199.99,
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop',
+    category: 'Electronics',
+    inStock: true,
+    rating: 4.5,
+    reviews: 128,
+    createdAt: '2024-01-01T10:00:00Z',
+    updatedAt: '2024-03-01T10:00:00Z',
+  },
+  {
+    id: '2',
+    name: 'Smart Watch',
+    description: 'Advanced fitness tracking and smart notifications',
+    price: 299.99,
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop',
+    category: 'Wearables',
+    inStock: true,
+    rating: 4.2,
+    reviews: 85,
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-02-28T10:00:00Z',
+  },
+  {
+    id: '3',
+    name: 'Laptop Stand',
+    description: 'Adjustable aluminum laptop stand for ergonomic working',
+    price: 49.99,
+    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=300&fit=crop',
+    category: 'Accessories',
+    inStock: false,
+    rating: 4.8,
+    reviews: 203,
+    createdAt: '2024-02-01T10:00:00Z',
+    updatedAt: '2024-03-05T10:00:00Z',
+  },
+  {
+    id: '4',
+    name: 'Wireless Mouse',
+    description: 'Ergonomic wireless mouse with precision tracking',
+    price: 39.99,
+    image: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=300&h=300&fit=crop',
+    category: 'Accessories',
+    inStock: true,
+    rating: 4.3,
+    reviews: 92,
+    createdAt: '2024-02-15T10:00:00Z',
+    updatedAt: '2024-03-10T10:00:00Z',
+  },
+];
+
+export const mockOrders: Order[] = [
+  {
+    id: '1',
+    userId: '1',
+    orderNumber: 'ORD-2024-0001',
+    date: '2024-03-15T10:30:00Z',
+    status: 'delivered',
+    total: 299.98,
+    items: [
+      {
+        id: '1',
+        productId: '1',
+        productName: 'Wireless Headphones',
+        quantity: 1,
+        price: 199.99,
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop',
+      },
+      {
+        id: '2',
+        productId: '4',
+        productName: 'Wireless Mouse',
+        quantity: 1,
+        price: 39.99,
+        image: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=100&h=100&fit=crop',
+      },
+    ],
+    shippingAddress: {
+      street: '123 Main St',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105',
+      country: 'USA',
+    },
+    createdAt: '2024-03-15T10:30:00Z',
+    updatedAt: '2024-03-20T15:45:00Z',
+  },
+  {
+    id: '2',
+    userId: '1',
+    orderNumber: 'ORD-2024-0002',
+    date: '2024-03-12T14:20:00Z',
+    status: 'shipped',
+    total: 299.99,
+    items: [
+      {
+        id: '3',
+        productId: '2',
+        productName: 'Smart Watch',
+        quantity: 1,
+        price: 299.99,
+        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&h=100&fit=crop',
+      },
+    ],
+    shippingAddress: {
+      street: '456 Oak Ave',
+      city: 'Los Angeles',
+      state: 'CA',
+      zipCode: '90210',
+      country: 'USA',
+    },
+    createdAt: '2024-03-12T14:20:00Z',
+    updatedAt: '2024-03-18T09:15:00Z',
+  },
+];
