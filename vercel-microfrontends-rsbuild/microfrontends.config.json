@@ -1,0 +1,44 @@
+{
+  "$schema": "https://raw.githubusercontent.com/vercel/microfrontends/main/packages/microfrontends/schema/schema.json",
+  "name": "vercel-microfrontends-rsbuild-demo",
+  "applications": [
+    {
+      "name": "host",
+      "path": "./apps/host",
+      "port": 3001,
+      "development": {
+        "port": 3001
+      }
+    },
+    {
+      "name": "remote-header",
+      "path": "./apps/remote-header",
+      "port": 3002,
+      "development": {
+        "port": 3002
+      }
+    },
+    {
+      "name": "remote-footer",
+      "path": "./apps/remote-footer",
+      "port": 3003,
+      "development": {
+        "port": 3003
+      }
+    }
+  ],
+  "routes": [
+    {
+      "source": "/",
+      "application": "host"
+    },
+    {
+      "source": "/header",
+      "application": "remote-header"
+    },
+    {
+      "source": "/footer",
+      "application": "remote-footer"
+    }
+  ]
+}

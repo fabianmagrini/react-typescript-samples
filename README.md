@@ -91,6 +91,15 @@ Located in the `rsbuild-module-federation` directory, this sample demonstrates:
 - Fast development and production builds with RSBuild's performance optimizations
 - Independent deployment and runtime loading of micro-frontend components
 
+### Vercel Microfrontends with RSBuild
+Located in the `vercel-microfrontends-rsbuild` directory, this sample demonstrates:
+- Production-ready microfrontend deployment on Vercel platform
+- RSBuild Module Federation with cloud-native architecture
+- Multi-repository deployment strategy with independent CI/CD pipelines
+- Edge-optimized microfrontend loading and caching strategies
+- Vercel serverless functions integration with federated modules
+- Scalable microfrontend architecture for enterprise applications
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
