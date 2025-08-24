@@ -100,6 +100,15 @@ Located in the `vercel-microfrontends-rsbuild` directory, this sample demonstrat
 - Vercel serverless functions integration with federated modules
 - Scalable microfrontend architecture for enterprise applications
 
+### Web Fragments with RSBuild
+Located in the `web-fragments-rsbuild` directory, this sample demonstrates:
+- Web fragments architecture using RSBuild for high-performance builds
+- Component-based fragment system with independent loading and caching
+- TypeScript integration with modular web fragment architecture
+- RSBuild's Rust-based build system for optimized fragment bundling
+- Runtime fragment composition and dynamic loading strategies
+- Scalable web fragment pattern for large-scale applications
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
