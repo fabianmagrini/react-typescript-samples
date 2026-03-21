@@ -118,6 +118,14 @@ Located in the `shell-owned-nav` directory, this sample demonstrates:
 - Monorepo with npm workspaces (shell, mfe-dashboard, mfe-profile, packages)
 - Playwright end-to-end testing for microfrontend integration
 
+### MPA Monorepo
+Located in the `mpa-monorepo` directory, this sample demonstrates:
+- Multi-page application (MPA) shell with SPA islands architecture
+- Next.js 15 App Router with server-side rendering
+- npm workspaces monorepo with shared packages
+- Authenticated internal tool pattern with Dashboard and Profile pages
+- MPA shell hosting independently rendered SPA page islands
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:

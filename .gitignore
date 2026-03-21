@@ -138,5 +138,18 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+# RSBuild cache
+.rsbuild/
+
+# Storybook build output
+storybook-static/
+
+# Playwright test output
+playwright-report/
+test-results/
+
+# Vercel deployment metadata
+.vercel/
+
 # Claude AI specific files
 .claude/

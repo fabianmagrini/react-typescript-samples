@@ -1,0 +1,12 @@
+{
+  "name": "mpa-demo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:mpa": "npm run dev --workspace=apps/mpa-app",
+    "build:mpa": "npm run build --workspace=apps/mpa-app"
+  }
+}
