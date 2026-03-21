@@ -120,11 +120,12 @@ Located in the `shell-owned-nav` directory, this sample demonstrates:
 
 ### MPA Monorepo
 Located in the `mpa-monorepo` directory, this sample demonstrates:
-- Multi-page application (MPA) shell with SPA islands architecture
-- Next.js 15 App Router with server-side rendering
-- npm workspaces monorepo with shared packages
-- Authenticated internal tool pattern with Dashboard and Profile pages
-- MPA shell hosting independently rendered SPA page islands
+- npm workspaces monorepo with three applications: an MPA shell and a Module Federation host/remote pair
+- Multi-page application (MPA) shell with SPA islands architecture using Next.js 15 App Router
+- Server-rendered shell + client-side Module Federation: Next.js server-renders the chrome (nav, headings, layout) and loads widget content at runtime from a separately deployed Rsbuild remote
+- Module Federation remote built with Rsbuild, exposing `DashboardWidget` and `ProfileWidget` as independently deployable browser bundles
+- `ssr: false` widget loading pattern with Suspense skeletons for cross-origin microfrontend content
+- Unit tests (Vitest + React Testing Library) and E2E tests (Playwright) covering both host and remote apps
 
 ## Getting Started
 

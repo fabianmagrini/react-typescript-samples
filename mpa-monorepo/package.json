@@ -7,6 +7,18 @@
   ],
   "scripts": {
     "dev:mpa": "npm run dev --workspace=apps/mpa-app",
-    "build:mpa": "npm run build --workspace=apps/mpa-app"
+    "build:mpa": "npm run build --workspace=apps/mpa-app",
+    "dev:mf": "concurrently --kill-others-on-fail \"npm run dev --workspace=apps/mpa-module-federation-remote\" \"npm run dev --workspace=apps/mpa-module-federation\"",
+    "dev:mf:host": "npm run dev --workspace=apps/mpa-module-federation",
+    "dev:mf:remote": "npm run dev --workspace=apps/mpa-module-federation-remote",
+    "build:mf": "npm run build --workspace=apps/mpa-module-federation-remote && npm run build --workspace=apps/mpa-module-federation",
+    "start:mf": "concurrently \"npm run dev --workspace=apps/mpa-module-federation-remote\" \"npm run start --workspace=apps/mpa-module-federation\"",
+    "test:mf": "npm run test --workspace=apps/mpa-module-federation",
+    "test:mf:e2e": "npm run test:e2e --workspace=apps/mpa-module-federation",
+    "test:mf:remote": "npm run test --workspace=apps/mpa-module-federation-remote",
+    "test:mf:all": "npm run test:mf && npm run test:mf:remote"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
   }
 }
