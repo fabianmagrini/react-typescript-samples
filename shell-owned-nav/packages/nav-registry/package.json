@@ -1,0 +1,13 @@
+{
+  "name": "@mfe-demo/nav-registry",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "mfe-demo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "shell",
+    "mfe-dashboard",
+    "mfe-profile"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w shell\" \"npm run dev -w mfe-dashboard\" \"npm run dev -w mfe-profile\"",
+    "build": "npm run build -w mfe-dashboard && npm run build -w mfe-profile && npm run build -w shell",
+    "test": "npm run test --workspaces --if-present",
+    "test:coverage": "npm run test:coverage --workspaces --if-present",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "concurrently": "^8.2.2"
+  }
+}

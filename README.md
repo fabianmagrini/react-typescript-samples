@@ -109,6 +109,15 @@ Located in the `web-fragments-rsbuild` directory, this sample demonstrates:
 - Runtime fragment composition and dynamic loading strategies
 - Scalable web fragment pattern for large-scale applications
 
+### Shell-Owned Navigation Pattern
+Located in the `shell-owned-nav` directory, this sample demonstrates:
+- Shell-owned navigation pattern where the shell app controls the nav bar
+- Shared `nav-registry` package that microfrontends use to self-register routes
+- MFEs declare their nav items (path, label, order) at load time via a registry
+- Shell subscribes to registry changes and re-renders navigation dynamically
+- Monorepo with npm workspaces (shell, mfe-dashboard, mfe-profile, packages)
+- Playwright end-to-end testing for microfrontend integration
+
 ## Getting Started
 
 Each sample is a self-contained React application. To run any sample:
@@ -148,6 +157,7 @@ Each sample is a self-contained React application. To run any sample:
 - Storybook (component documentation)
 - Vitest (testing framework)
 - React Testing Library
+- Playwright (end-to-end testing)
 - ESLint
 - Modern CSS
 
