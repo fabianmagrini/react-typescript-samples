@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.rsbuild/
+
+# Module Federation — generated at dev/build time
+shell/@mf-types/
+
+# Test artifacts
+playwright-report/
+test-results/
+coverage/
+
+# Local env overrides
+.env
+.env.local
+
+# macOS
+.DS_Store

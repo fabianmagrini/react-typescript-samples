@@ -33,9 +33,7 @@ describe('mfe-profile register', () => {
 
   it('registers with order 2 (after Dashboard which is order 1)', () => {
     registerRoutes();
-    expect(vi.mocked(registerNavItem)).toHaveBeenCalledWith(
-      expect.objectContaining({ order: 2 }),
-    );
+    expect(vi.mocked(registerNavItem)).toHaveBeenCalledWith(expect.objectContaining({ order: 2 }));
   });
 
   it('registers the complete nav item', () => {

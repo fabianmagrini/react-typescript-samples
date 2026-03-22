@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { type Page, expect, test } from '@playwright/test';
 
 test.describe('Profile page', () => {
   test.beforeEach(async ({ page }) => {
@@ -8,10 +8,10 @@ test.describe('Profile page', () => {
   });
 
   // Helpers — locate inputs by their name attribute (Playwright has no getByDisplayValue)
-  const nameInput  = (page: any) => page.locator('input[name="name"]');
-  const emailInput = (page: any) => page.locator('input[name="email"]');
-  const roleInput  = (page: any) => page.locator('input[name="role"]');
-  const bioInput   = (page: any) => page.locator('textarea[name="bio"]');
+  const nameInput = (page: Page) => page.locator('input[name="name"]');
+  const emailInput = (page: Page) => page.locator('input[name="email"]');
+  const roleInput = (page: Page) => page.locator('input[name="role"]');
+  const bioInput = (page: Page) => page.locator('textarea[name="bio"]');
 
   // ---------------------------------------------------------------------------
   // Header
@@ -51,9 +51,7 @@ test.describe('Profile page', () => {
   });
 
   test('bio textarea has the default value', async ({ page }) => {
-    await expect(bioInput(page)).toHaveValue(
-      'Building great products one sprint at a time.',
-    );
+    await expect(bioInput(page)).toHaveValue('Building great products one sprint at a time.');
   });
 
   test('renders the Save changes button', async ({ page }) => {

@@ -21,10 +21,15 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div
+            key={stat.label}
+            className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm"
+          >
             <p className="text-sm text-slate-500 font-medium">{stat.label}</p>
             <p className="text-2xl font-bold text-slate-900 mt-1">{stat.value}</p>
-            <span className={`text-xs font-semibold mt-1 inline-block ${stat.up ? 'text-emerald-600' : 'text-red-500'}`}>
+            <span
+              className={`text-xs font-semibold mt-1 inline-block ${stat.up ? 'text-emerald-600' : 'text-red-500'}`}
+            >
               {stat.change} vs last month
             </span>
           </div>

@@ -97,12 +97,15 @@ test.describe('Shell — routing and navigation', () => {
   test('navigation does not cause layout shift (CLS < 0.1)', async ({ page }) => {
     // Inject a PerformanceObserver before the page loads so it captures
     // every layout-shift entry from the very first paint.
+    type ClsWindow = Window & typeof globalThis & { __cls: number };
+    type LayoutShiftEntry = PerformanceEntry & { hadRecentInput: boolean; value: number };
+
     await page.addInitScript(() => {
-      (window as any).__cls = 0;
+      (window as ClsWindow).__cls = 0;
       new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          if (!(entry as any).hadRecentInput) {
-            (window as any).__cls += (entry as any).value;
+          if (!(entry as LayoutShiftEntry).hadRecentInput) {
+            (window as ClsWindow).__cls += (entry as LayoutShiftEntry).value;
           }
         }
       }).observe({ type: 'layout-shift', buffered: true });
@@ -113,7 +116,7 @@ test.describe('Shell — routing and navigation', () => {
     // Small pause to capture any deferred layout shifts
     await page.waitForTimeout(300);
 
-    const cls = await page.evaluate(() => (window as any).__cls as number);
+    const cls = await page.evaluate(() => (window as ClsWindow).__cls);
     expect(cls).toBeLessThan(0.1);
   });
 });

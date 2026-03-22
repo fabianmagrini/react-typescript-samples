@@ -20,9 +20,7 @@ describe('nav-registry', () => {
   describe('registerNavItem', () => {
     it('adds an item so getNavItems returns it', () => {
       registry.registerNavItem({ path: '/foo', label: 'Foo', order: 1 });
-      expect(registry.getNavItems()).toEqual([
-        { path: '/foo', label: 'Foo', order: 1 },
-      ]);
+      expect(registry.getNavItems()).toEqual([{ path: '/foo', label: 'Foo', order: 1 }]);
     });
 
     it('deduplicates: a second call with the same path is ignored', () => {
@@ -164,11 +162,11 @@ describe('nav-registry', () => {
 
     it('multiple independent subscriptions can be active simultaneously', () => {
       const listeners = [vi.fn(), vi.fn(), vi.fn()];
-      listeners.forEach((l) => registry.subscribe(l));
+      for (const l of listeners) registry.subscribe(l);
 
       registry.registerNavItem({ path: '/a', label: 'A', order: 1 });
 
-      listeners.forEach((l) => expect(l).toHaveBeenCalledOnce());
+      for (const l of listeners) expect(l).toHaveBeenCalledOnce();
     });
   });
 });

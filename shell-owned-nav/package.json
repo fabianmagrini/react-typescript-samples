@@ -1,15 +1,14 @@
 {
   "name": "mfe-demo",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "shell",
-    "mfe-dashboard",
-    "mfe-profile"
-  ],
+  "workspaces": ["packages/*", "shell", "mfe-dashboard", "mfe-profile"],
   "scripts": {
     "dev": "concurrently \"npm run dev -w shell\" \"npm run dev -w mfe-dashboard\" \"npm run dev -w mfe-profile\"",
     "build": "npm run build -w mfe-dashboard && npm run build -w mfe-profile && npm run build -w shell",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
     "test": "npm run test --workspaces --if-present",
     "test:coverage": "npm run test:coverage --workspaces --if-present",
     "test:e2e": "playwright test",
@@ -17,6 +16,7 @@
     "test:e2e:report": "playwright show-report"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@playwright/test": "^1.49.0",
     "concurrently": "^8.2.2"
   }

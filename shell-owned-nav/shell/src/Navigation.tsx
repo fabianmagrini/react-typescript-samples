@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { type NavItem, getNavItems, subscribe } from '@mfe-demo/nav-registry';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getNavItems, subscribe, type NavItem } from '@mfe-demo/nav-registry';
 
 export default function Navigation() {
   const [items, setItems] = useState<NavItem[]>(getNavItems);
@@ -16,9 +16,7 @@ export default function Navigation() {
         <NavLink
           key={item.path}
           to={item.path}
-          className={({ isActive }) =>
-            `nav-link${isActive ? ' active' : ''}`
-          }
+          className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
         >
           {item.label}
         </NavLink>

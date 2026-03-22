@@ -40,10 +40,14 @@ export default function Profile() {
         <form onSubmit={handleSubmit} className="space-y-4">
           {(['name', 'email', 'role'] as const).map((field) => (
             <div key={field}>
-              <label className="block text-sm font-medium text-slate-700 mb-1 capitalize">
+              <label
+                htmlFor={field}
+                className="block text-sm font-medium text-slate-700 mb-1 capitalize"
+              >
                 {field}
               </label>
               <input
+                id={field}
                 name={field}
                 value={form[field]}
                 onChange={handleChange}
@@ -52,8 +56,11 @@ export default function Profile() {
             </div>
           ))}
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Bio</label>
+            <label htmlFor="bio" className="block text-sm font-medium text-slate-700 mb-1">
+              Bio
+            </label>
             <textarea
+              id="bio"
               name="bio"
               value={form.bio}
               onChange={handleChange}

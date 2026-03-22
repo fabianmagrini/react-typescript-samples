@@ -51,9 +51,11 @@ Browser                   Shell main.tsx               MFE register.ts
     │    nav fully populated   │                              │
 ```
 
-`shell/src/main.tsx` calls `Promise.all` on both `register` modules before mounting React. The `register` modules are intentionally tiny — they import from `@mfe-demo/nav-registry` and call `registerNavItem`. No React, no components. They resolve in a single round-trip to the remote's manifest.
+`shell/src/main.tsx` calls `Promise.allSettled` on both `register` modules before mounting React. The `register` modules are intentionally tiny — they import from `@mfe-demo/nav-registry` and call `registerNavItem`. No React, no components. They resolve in a single round-trip to the remote's manifest.
 
-By the time `createRoot().render()` is called, `getNavItems()` already returns all two nav items, so `<Navigation>` renders with complete data on the very first pass.
+`Promise.allSettled` (rather than `Promise.all`) provides graceful degradation: if one remote fails to load its register module, the shell logs a warning and continues with whichever MFEs did load. The app never hangs or crashes due to a single unavailable remote.
+
+By the time `createRoot().render()` is called, `getNavItems()` already returns all available nav items, so `<Navigation>` renders with complete data on the very first pass.
 
 ---
 
@@ -80,20 +82,25 @@ The shell additionally sets `eager: true`, which bundles the registry into the s
 
 ```ts
 // shell/rsbuild.config.ts
+const dashboardUrl = process.env.MFE_DASHBOARD_URL ?? 'http://localhost:3001';
+const profileUrl   = process.env.MFE_PROFILE_URL   ?? 'http://localhost:3002';
+
 pluginModuleFederation({
   name: 'shell',
   remotes: {
-    mfe_dashboard: 'mfe_dashboard@http://localhost:3001/mf-manifest.json',
-    mfe_profile:   'mfe_profile@http://localhost:3002/mf-manifest.json',
+    mfe_dashboard: `mfe_dashboard@${dashboardUrl}/mf-manifest.json`,
+    mfe_profile:   `mfe_profile@${profileUrl}/mf-manifest.json`,
   },
   shared: {
-    react:                    { singleton: true, eager: true },
-    'react-dom':              { singleton: true, eager: true },
-    'react-router-dom':       { singleton: true, eager: true },
+    react:                    { singleton: true, eager: true, requiredVersion: '^18' },
+    'react-dom':              { singleton: true, eager: true, requiredVersion: '^18' },
+    'react-router-dom':       { singleton: true, eager: true, requiredVersion: '^6' },
     '@mfe-demo/nav-registry': { singleton: true, eager: true },
   },
 })
 ```
+
+Remote URLs default to `localhost` but can be overridden via environment variables — see `.env.example`.
 
 `eager: true` on shared libs means they are included in the shell's initial bundle chunk. There is no async negotiation for React or the nav registry — they are available immediately, before any remote is contacted.
 
@@ -109,9 +116,9 @@ pluginModuleFederation({
     './register':  './src/register',   // eagerly loaded by shell bootstrap
   },
   shared: {
-    react:                    { singleton: true },  // no eager — shell drives this
-    'react-dom':              { singleton: true },
-    'react-router-dom':       { singleton: true },
+    react:                    { singleton: true, requiredVersion: '^18' },  // no eager — shell drives this
+    'react-dom':              { singleton: true, requiredVersion: '^18' },
+    'react-router-dom':       { singleton: true, requiredVersion: '^6' },
     '@mfe-demo/nav-registry': { singleton: true },
   },
 })
@@ -216,14 +223,6 @@ pluginModuleFederation({
 })
 ```
 
-Also add the entry point (Rsbuild defaults to `src/index.tsx`; MFEs use `src/main.tsx`):
-
-```ts
-source: {
-  entry: { index: './src/main.tsx' },
-},
-```
-
 ### 4. Register the remote in shell
 
 ```ts
@@ -239,19 +238,21 @@ remotes: {
 
 ```ts
 // shell/src/main.tsx
-const [
-  { registerRoutes: registerDashboard },
-  { registerRoutes: registerProfile },
-  { registerRoutes: registerSettings },   // add
-] = await Promise.all([
+const [dashboardResult, profileResult, settingsResult] = await Promise.allSettled([
   import('mfe_dashboard/register'),
   import('mfe_profile/register'),
-  import('mfe_settings/register'),         // add
+  import('mfe_settings/register'),   // add
 ]);
 
-registerDashboard();
-registerProfile();
-registerSettings();                        // add
+if (dashboardResult.status === 'fulfilled') dashboardResult.value.registerRoutes();
+else console.warn('[shell] mfe_dashboard/register failed to load:', dashboardResult.reason);
+
+if (profileResult.status === 'fulfilled') profileResult.value.registerRoutes();
+else console.warn('[shell] mfe_profile/register failed to load:', profileResult.reason);
+
+// add
+if (settingsResult.status === 'fulfilled') settingsResult.value.registerRoutes();
+else console.warn('[shell] mfe_settings/register failed to load:', settingsResult.reason);
 ```
 
 ### 6. Add the route and type declarations

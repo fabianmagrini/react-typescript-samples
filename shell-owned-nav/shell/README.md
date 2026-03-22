@@ -19,29 +19,44 @@ Runs on **http://localhost:3000**.
 The most important file for the no-flicker guarantee. It:
 
 1. Imports the CSS so Tailwind is available immediately
-2. Calls `Promise.all` to eagerly fetch the `register` module from each remote
-3. Calls each MFE's `registerRoutes()` to populate the nav registry
+2. Calls `Promise.allSettled` to eagerly fetch the `register` module from each remote
+3. Calls each successfully loaded MFE's `registerRoutes()` to populate the nav registry
 4. Only then renders `<App>` via `createRoot`
 
-Because `registerRoutes()` runs before `render()`, `<Navigation>` has complete data on its very first render pass.
+Because `registerRoutes()` runs before `render()`, `<Navigation>` has complete data on its very first render pass. `Promise.allSettled` (rather than `Promise.all`) provides graceful degradation — if one remote fails to load, the shell logs a warning and continues with the remaining MFEs.
 
 ```ts
 async function bootstrap() {
-  const [
-    { registerRoutes: registerDashboard },
-    { registerRoutes: registerProfile },
-  ] = await Promise.all([
+  const results = await Promise.allSettled([
     import('mfe_dashboard/register'),
     import('mfe_profile/register'),
   ]);
 
-  registerDashboard();
-  registerProfile();
+  const [dashboardResult, profileResult] = results;
+
+  if (dashboardResult.status === 'fulfilled') {
+    dashboardResult.value.registerRoutes();
+  } else {
+    console.warn('[shell] mfe_dashboard/register failed to load:', dashboardResult.reason);
+  }
+
+  if (profileResult.status === 'fulfilled') {
+    profileResult.value.registerRoutes();
+  } else {
+    console.warn('[shell] mfe_profile/register failed to load:', profileResult.reason);
+  }
 
   const { createRoot } = await import('react-dom/client');
   const { default: App } = await import('./App');
-  createRoot(document.getElementById('root')!).render(<App />);
+
+  const rootElement = document.getElementById('root');
+  if (!rootElement) throw new Error('#root element not found');
+  createRoot(rootElement).render(<App />);
 }
+
+bootstrap().catch((err) => {
+  console.error('[shell] Fatal bootstrap error:', err);
+});
 ```
 
 ### `src/App.tsx` — Router and layout
@@ -70,20 +85,25 @@ Contains:
 
 ```ts
 // rsbuild.config.ts
+const dashboardUrl = process.env.MFE_DASHBOARD_URL ?? 'http://localhost:3001';
+const profileUrl = process.env.MFE_PROFILE_URL ?? 'http://localhost:3002';
+
 pluginModuleFederation({
   name: 'shell',
   remotes: {
-    mfe_dashboard: 'mfe_dashboard@http://localhost:3001/mf-manifest.json',
-    mfe_profile:   'mfe_profile@http://localhost:3002/mf-manifest.json',
+    mfe_dashboard: `mfe_dashboard@${dashboardUrl}/mf-manifest.json`,
+    mfe_profile:   `mfe_profile@${profileUrl}/mf-manifest.json`,
   },
   shared: {
-    react:                    { singleton: true, eager: true },
-    'react-dom':              { singleton: true, eager: true },
-    'react-router-dom':       { singleton: true, eager: true },
+    react:                    { singleton: true, eager: true, requiredVersion: '^18' },
+    'react-dom':              { singleton: true, eager: true, requiredVersion: '^18' },
+    'react-router-dom':       { singleton: true, eager: true, requiredVersion: '^6' },
     '@mfe-demo/nav-registry': { singleton: true, eager: true },
   },
 })
 ```
+
+Remote URLs default to `localhost` but can be overridden via `.env` (see `.env.example` in the repo root).
 
 `eager: true` on all shared modules means they are bundled into the shell's initial chunk. There is no async negotiation for React, React Router, or the nav registry — they are available the instant the shell's JS executes.
 
@@ -105,4 +125,4 @@ Without this, Rsbuild finds no entry and only emits the Module Federation manife
 npm run dev -w shell
 ```
 
-Note: the shell requires both `mfe-dashboard` and `mfe-profile` dev servers to be running, otherwise the bootstrap `Promise.all` will fail with a network error.
+Note: if `mfe-dashboard` or `mfe-profile` dev servers are not running, their `register` module will fail to load. The shell will log a warning and render without those nav items — it does not crash.

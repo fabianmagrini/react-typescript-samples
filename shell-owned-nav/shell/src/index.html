@@ -42,8 +42,8 @@
       .nav-link:hover { color: #f1f5f9; }
       .nav-link.active { color: #f1f5f9; border-bottom-color: #6366f1; }
     </style>
-    <link rel="preload" href="http://localhost:3001/mf-manifest.json" as="fetch" crossorigin />
-    <link rel="preload" href="http://localhost:3002/mf-manifest.json" as="fetch" crossorigin />
+    <link rel="preload" href="<%= mfeDashboardUrl %>/mf-manifest.json" as="fetch" crossorigin />
+    <link rel="preload" href="<%= mfeProfileUrl %>/mf-manifest.json" as="fetch" crossorigin />
   </head>
   <body>
     <div id="root"></div>

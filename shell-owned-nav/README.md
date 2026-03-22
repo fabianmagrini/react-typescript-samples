@@ -5,11 +5,16 @@ A production-pattern microfrontend application demonstrating **Module Federation
 ## Quick Start
 
 ```bash
+# Use the pinned Node version (requires nvm)
+nvm use
+
 npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+> **Environment variables:** Copy `.env.example` to `.env` and adjust the remote URLs if you are not running on the default ports.
 
 All three dev servers start concurrently:
 

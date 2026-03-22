@@ -63,15 +63,10 @@ describe('Navigation', () => {
   });
 
   it('renders links with correct href attributes', () => {
-    vi.mocked(getNavItems).mockReturnValue([
-      { path: '/dashboard', label: 'Dashboard', order: 1 },
-    ]);
+    vi.mocked(getNavItems).mockReturnValue([{ path: '/dashboard', label: 'Dashboard', order: 1 }]);
     renderNav();
 
-    expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute(
-      'href',
-      '/dashboard',
-    );
+    expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute('href', '/dashboard');
   });
 
   it('renders items in registry order', () => {
@@ -125,10 +120,10 @@ describe('Navigation', () => {
     renderNav();
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
 
-    vi.mocked(getNavItems).mockReturnValue([
-      { path: '/dashboard', label: 'Dashboard', order: 1 },
-    ]);
-    act(() => { capturedListener?.(); });
+    vi.mocked(getNavItems).mockReturnValue([{ path: '/dashboard', label: 'Dashboard', order: 1 }]);
+    act(() => {
+      capturedListener?.();
+    });
 
     expect(screen.getByRole('link', { name: 'Dashboard' })).toBeInTheDocument();
   });
@@ -136,16 +131,18 @@ describe('Navigation', () => {
   it('reflects multiple successive registry updates', () => {
     renderNav();
 
-    vi.mocked(getNavItems).mockReturnValue([
-      { path: '/dashboard', label: 'Dashboard', order: 1 },
-    ]);
-    act(() => { capturedListener?.(); });
+    vi.mocked(getNavItems).mockReturnValue([{ path: '/dashboard', label: 'Dashboard', order: 1 }]);
+    act(() => {
+      capturedListener?.();
+    });
 
     vi.mocked(getNavItems).mockReturnValue([
       { path: '/dashboard', label: 'Dashboard', order: 1 },
       { path: '/profile', label: 'Profile', order: 2 },
     ]);
-    act(() => { capturedListener?.(); });
+    act(() => {
+      capturedListener?.();
+    });
 
     expect(screen.getAllByRole('link')).toHaveLength(2);
   });

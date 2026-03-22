@@ -3,8 +3,10 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import Dashboard from './Dashboard';
 
-createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('#root element not found');
+createRoot(rootElement).render(
   <StrictMode>
     <Dashboard />
-  </StrictMode>
+  </StrictMode>,
 );

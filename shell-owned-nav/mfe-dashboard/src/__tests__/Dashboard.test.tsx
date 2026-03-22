@@ -14,9 +14,7 @@ describe('Dashboard', () => {
 
   it('renders the subtitle', () => {
     render(<Dashboard />);
-    expect(
-      screen.getByText(/welcome back/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/welcome back/i)).toBeInTheDocument();
   });
 
   // -------------------------------------------------------------------------
@@ -74,9 +72,7 @@ describe('Dashboard', () => {
 
   it('renders the Recent Activity heading', () => {
     render(<Dashboard />);
-    expect(
-      screen.getByRole('heading', { name: 'Recent Activity' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Recent Activity' })).toBeInTheDocument();
   });
 
   it('renders all four activity entries', () => {

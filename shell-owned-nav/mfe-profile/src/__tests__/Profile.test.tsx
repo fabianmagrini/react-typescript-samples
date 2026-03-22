@@ -51,9 +51,7 @@ describe('Profile', () => {
 
   it('renders email input with default value', () => {
     render(<Profile />);
-    expect(
-      screen.getByDisplayValue('jane.doe@example.com'),
-    ).toBeInTheDocument();
+    expect(screen.getByDisplayValue('jane.doe@example.com')).toBeInTheDocument();
   });
 
   it('renders role input with default value', () => {
@@ -78,9 +76,7 @@ describe('Profile', () => {
 
   it('renders the Save changes button', () => {
     render(<Profile />);
-    expect(
-      screen.getByRole('button', { name: /save changes/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /save changes/i })).toBeInTheDocument();
   });
 
   // -------------------------------------------------------------------------
@@ -112,9 +108,7 @@ describe('Profile', () => {
 
   it('updates the bio textarea when the user types', () => {
     render(<Profile />);
-    const textarea = screen.getByDisplayValue(
-      'Building great products one sprint at a time.',
-    );
+    const textarea = screen.getByDisplayValue('Building great products one sprint at a time.');
     fireEvent.change(textarea, {
       target: { name: 'bio', value: 'New bio text.' },
     });
@@ -143,7 +137,9 @@ describe('Profile', () => {
 
   it('shows Saved! after the form is submitted', () => {
     render(<Profile />);
-    fireEvent.submit(screen.getByRole('button', { name: /save changes/i }).closest('form')!);
+    fireEvent.submit(
+      screen.getByRole('button', { name: /save changes/i }).closest('form') as HTMLFormElement,
+    );
     expect(screen.getByText('Saved!')).toBeInTheDocument();
   });
 
@@ -151,7 +147,7 @@ describe('Profile', () => {
     render(<Profile />);
     // Save first
     fireEvent.submit(
-      screen.getByRole('button', { name: /save changes/i }).closest('form')!,
+      screen.getByRole('button', { name: /save changes/i }).closest('form') as HTMLFormElement,
     );
     expect(screen.getByText('Saved!')).toBeInTheDocument();
 
@@ -163,7 +159,9 @@ describe('Profile', () => {
 
   it('shows Saved! again after saving a second time', () => {
     render(<Profile />);
-    const form = screen.getByRole('button', { name: /save changes/i }).closest('form')!;
+    const form = screen
+      .getByRole('button', { name: /save changes/i })
+      .closest('form') as HTMLFormElement;
 
     fireEvent.submit(form);
     const input = screen.getByDisplayValue('Jane Doe');

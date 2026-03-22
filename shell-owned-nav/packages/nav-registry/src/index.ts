@@ -11,7 +11,7 @@ export function registerNavItem(item: NavItem): void {
   if (!items.find((i) => i.path === item.path)) {
     items.push(item);
     items.sort((a, b) => a.order - b.order);
-    listeners.forEach((l) => l());
+    for (const l of listeners) l();
   }
 }
 
